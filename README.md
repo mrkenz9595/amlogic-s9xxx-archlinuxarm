@@ -23,7 +23,7 @@ Three different kinds of releases are available, which you can download either f
  - `ArchLinuxARM-aarch64-Amlogic-*-pkgs.tar.xz` is a compressed archive of the AUR packages built and installed into the above image. You can download it and upgrade your packages with the files in it with `pacman -U`, if you don't want to built them by yourself when upgrading. It could also be used to `pacstrap` an installation by yourself.
 
 ### Bootup setup
-After you flash the image, you should open the FAT32 first/boot partition with label ``ALARMBOOT``, and do the following adjustment:
+After you flash the image, you should open the FAT32 first/boot partition with label ``ARCHBOOT``, and do the following adjustment:
  - Find a corresponding u-boot in the folder ``uboot``, copy/move it as ``u-boot.ext`` in the root of the partition. You can then safely delete the ``uboot`` folder if you want to save space
  - Edit ``uEnv.txt``, change the line
     ```
@@ -76,10 +76,10 @@ Holding the reset button with the SD card / USB drive plugged in, and power on t
 By default, `systemd-networkd.service` and `systemd-resolved.service` are enabled, and DHCP is enabled on `en*` and ``eth*``, you can check your router to get the box's IP
 
 #### SSH
-By default, `sshd.service` is enabled, and root login is permitted, whose password is `alarm_please_change_me`
+By default, `sshd.service` is enabled, and root login is permitted, whose password is `123`
 
 #### Users
-By default, there's a user ``alarm`` in the group ``wheel`` and can use `sudo` with password. The user has a password `alarm_please_change_me`
+By default, there's a user ``admin`` in the group ``wheel`` and can use `sudo` with password. The user has a password `123`
 
 ### Upgrade
 #### Packages

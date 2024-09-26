@@ -392,7 +392,7 @@ UUID=${uuid_boot_specifier}	/boot	vfat	rw,noatime	0 2" >>  cache/root/etc/fstab
     echo 'LANG=en_US.UTF-8' > cache/root/etc/locale.conf
 
     # Network
-    echo alarm > cache/root/etc/hostname
+    echo archlinux > cache/root/etc/hostname
     printf '127.0.0.1\tlocalhost\n::1\t\tlocalhost\n' >> cache/root/etc/hosts
     printf '[Match]\nName=eth* en*\n\n[Network]\nDHCP=yes\nDNSSEC=no\n' > cache/root/etc/systemd/network/20-wired.network
 
@@ -411,7 +411,7 @@ UUID=${uuid_boot_specifier}	/boot	vfat	rw,noatime	0 2" >>  cache/root/etc/fstab
     # Things that need to bone inside the root
     chroot cache/root /bin/bash -ec "locale-gen
 systemctl enable systemd-{network,resolve,timesync}d sshd
-useradd --groups wheel --create-home --password '"'$y$j9T$raNZsZE8wMTuGo2FHnYBK/$0Z0OEtF62U.wONdo.nyd/GodMLEh62kTdZXeb10.yT7'"' alarm"
+useradd --groups wheel --create-home --password '"'$y$j9T$u9hBpn5eCz1MXrOmVxMvG0$PbMl6nxKrAdnAfNz1eRoJIv58JJ4PHHl9XJONMVq5A5'"' admin"
 }
 
 archive_root() {
@@ -524,7 +524,7 @@ image_boot() {
     local image=cache/boot.img
     rm -f "${image}"
     truncate -s 256M "${image}"
-    mkfs.vfat -n 'ALARMBOOT' -F 32 -i "${uuid_boot_mkfs}" "${image}"
+    mkfs.vfat -n 'ARCHBOOT' -F 32 -i "${uuid_boot_mkfs}" "${image}"
     mcopy -osi "${image}" cache/root/boot/* ::
 }
 
@@ -536,7 +536,7 @@ image_root() {
     local image=cache/root.img
     rm -f "${image}"
     truncate -s 1788M "${image}"
-    mkfs.ext4 -L 'ALARMROOT' -m 0 -U "${uuid_root}" -d cache/root "${image}"
+    mkfs.ext4 -L 'ARCHROOT' -m 0 -U "${uuid_root}" -d cache/root "${image}"
 }
 
 cleanup_cache() {
